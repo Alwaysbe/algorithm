@@ -1,0 +1,80 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static int[][] arr;
+	public static int one = 0;
+	public static int zero = 0;
+	public static int minus = 0;
+	
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int n = Integer.parseInt(br.readLine());
+		
+		arr = new int[n][n];
+		
+		StringTokenizer st;
+		
+		for(int i=0; i<n; i++) {
+			
+			st = new StringTokenizer(br.readLine(), " ");
+			
+			for(int j=0; j<n; j++) {
+				arr[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		
+		divide(0,0,n);
+		
+		System.out.println(minus);
+		System.out.println(zero);
+		System.out.println(one);
+		
+	}
+	
+	public static void divide(int row, int col, int size) {
+		if(right(row, col, size)) {
+			if(arr[row][col]==0) {
+				zero++;
+			}
+			
+			else if(arr[row][col]==1) {
+				one++;
+			}
+			else {
+				minus++;
+			}
+			return;
+		}
+		
+		int n = size/3;
+		
+		divide(row,col,n);
+		divide(row,col+n,n);
+		divide(row,col+2*n,n);
+		
+		divide(row+n,col,n);
+		divide(row+n,col+n,n);
+		divide(row+n,col+2*n,n);
+		
+		divide(row+2*n,col,n);
+		divide(row+2*n,col+n,n);
+		divide(row+2*n,col+2*n,n);
+	}
+	
+	public static boolean right(int row, int col, int n) {
+		int color = arr[row][col];
+		
+		for(int i=row; i<row+n; i++) {
+			for(int j=col; j<col+n; j++) {
+				if(arr[i][j] != color) {
+					return false;
+				}
+			}
+		}
+		
+		
+		return true;
+	}
+}
