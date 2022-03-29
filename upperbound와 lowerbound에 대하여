@@ -5,3 +5,33 @@ upperbound와 lowerbound를 사용할 때
 중복 원소에서 가장 끝 값(가장 오른쪽 값)을 찾고자 한다면 upperbound - 1을 하면 된다.
 
 중복 원소 중 가장 왼쪽 끝 값(가장 왼쪽 값)을 찾고자 한다면 lowerbound을 통해 반환 된 값 그대로 하면 된다.
+
+upperbound 응용(공유기 설치)
+
+while(low<hi) {
+			int mid = (low+hi) / 2;
+			
+			if(install(mid) < c) {
+				hi = mid;
+			}
+			
+			else {
+				low = mid+1;
+			}
+		}
+	
+	public static int install(int distance) {
+		int count = 1;
+		int install_house = arr[0];
+		
+		for(int i=1; i<arr.length; i++) {
+			int locate = arr[i];
+			
+			
+			if(locate-install_house >= distance) {
+				count++;
+				install_house = locate;
+			}
+		}		
+		return count;
+	}
