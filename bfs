@@ -1,0 +1,16 @@
+public static void dfs(int at, int depth) {
+ 
+		if (depth == M) {
+			for (int val : arr) {
+				sb.append(val).append(' ');
+			}
+			sb.append('\n');
+			return;
+		}
+ 
+		for (int i = at; i <= N; i++) {
+			arr[depth] = i;
+			dfs(i, depth + 1);
+		}
+ 
+	}
