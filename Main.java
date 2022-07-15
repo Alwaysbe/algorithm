@@ -14,16 +14,13 @@ public class Main {
 	}
 	
 	static int fibo(int x) {
-		if(x == 1 || x == 2) {
-			return 1;
+		dp[1] = 1;
+		dp[2] = 1;
+		
+		for(int i=3; i<=x; i++) {
+			dp[i] = dp[i-1] + dp[i-2];
 		}
 		
-		if(dp[x] != 0) {
-			return dp[x];
-		}
-		
-		dp[x] = fibo(x-1) + fibo(x-2);
 		return dp[x];
 	}
-
 }
